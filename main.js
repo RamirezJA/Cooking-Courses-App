@@ -1,7 +1,11 @@
 const express = require("express"),
     app = express(),
     homeController = require("./controllers/homeController"),
-    layouts = require("express-ejs-layouts");
+    errorController = require("./controllers/errorController"),
+    layouts = require("express-ejs-layouts"),
+    MongoDB = require("mongodb").MongoClient,
+    dbURL = "mongodb://localhost:27017",
+    dbName = "recipe_db";
 
     app.set("view engine", "ejs");
     app.set("port", process.env.PORT || 3000);
@@ -22,6 +26,9 @@ const express = require("express"),
     app.get("/courses", homeController.showCourses);
     app.get("/contact", homeController.showSignUp);
     app.get("/contact", homeController.postedSignUpForm);
+
+    app.use(errorController.pageNotFoundError);
+    app.use(errorController.internalServerError);
 
     app.listen(app.get("port"), () => {
         console.log(

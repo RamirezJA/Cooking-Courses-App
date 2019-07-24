@@ -3,9 +3,13 @@ const express = require("express"),
     homeController = require("./controllers/homeController"),
     errorController = require("./controllers/errorController"),
     layouts = require("express-ejs-layouts"),
-    MongoDB = require("mongodb").MongoClient,
-    dbURL = "mongodb://localhost:27017",
-    dbName = "recipe_db";
+    mongoose = require("mongoose");
+
+    mongoose.connect(
+        "mongodb:localhost//27017/recipe_db",
+        {useNewUrlParser: true}
+    );
+    const db = mongoose.connection;
 
     app.set("view engine", "ejs");
     app.set("port", process.env.PORT || 3000);

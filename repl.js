@@ -1,5 +1,6 @@
 const mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber"),
+  User = require("./models/user")
   Course = require("./models/course");
 var testCourse, testSubscriber;
 mongoose.connect(

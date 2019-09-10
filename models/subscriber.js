@@ -17,6 +17,8 @@ const mongoose = require("mongoose"),
             max: 99999
         },
         courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course"}]
+    }, {
+        timestamps: true
     });
 
     subscriberSchema.methods.getInfo = function() {

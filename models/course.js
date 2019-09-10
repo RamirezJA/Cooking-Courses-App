@@ -16,5 +16,7 @@ const courseSchema = new mongoose.Schema({
         min: [10000, "zipcode too short"],
         max: 99999
     }
+}, {
+    timestamps: true
 });
 module.exports = mongoose.model("Course", courseSchema);

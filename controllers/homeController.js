@@ -26,4 +26,3 @@ exports.showSignUp = (req, res) => {
 exports.postedSignUpForm = (req, res) => {
     res.render("thanks");
 };
-

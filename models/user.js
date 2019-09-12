@@ -38,4 +38,9 @@ userSchema.virtual("fullName")
         return `${this.name.first} ${this.name.last}`;
     });
 
+    userSchema.virtual("length")
+    .get(function() {
+        return `Characters in last name: ${this.name.last.length} `;
+    });
+
 module.exports = mongoose.model("User", userSchema);

@@ -33,5 +33,32 @@ module.exports = {
       .catch(error => {
         if (error) res.send(error);
       });
+  },
+  new: (req, res) => {
+    res.render("subscribers/new");
+  },
+  
+  create: (req, res, next) => {
+    let subscriberParams = {
+      name: req.body.name,
+      email: req.body.email,
+      zipCode: req.body.zipCode
+    };
+    Subscriber.create(subscriberParams)
+      .then(subscriber => {
+        res.locals.redirect = "/subscribers";
+        res.locals.subscriber = subscriber;
+        next();
+      })
+      .catch(error => {
+        console.log(`Error saving subscriber: ${error.message} `);
+        next(error);
+      });
+  },
+
+  redirectView: (req, res, next) => {
+    let redirectPath = res.locals.redirect;
+    if(redirectPath !== undefined) res.redirect(redirectPath);
+    else next();
   }
 };

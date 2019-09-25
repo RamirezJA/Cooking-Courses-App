@@ -18,7 +18,7 @@ const mongoose = require("mongoose"),
             lowercase: true,
             unique: true
         },
-        zipcode: {
+        zipCode: {
             type: Number,
             min: [1000, "zip code too short"],
             max: 99999

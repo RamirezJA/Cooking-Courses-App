@@ -29,7 +29,7 @@ module.exports = {
       },
       email: req.body.email,
       password: req.body.password,
-      zipCode: req.body.zipCode
+      zipCode: req.body.zipCode,
     };
 
     User.create(userParams)

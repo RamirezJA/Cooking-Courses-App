@@ -55,6 +55,23 @@ module.exports = {
         next(error);
       });
   },
+  
+  show: (req, res, next) => {
+    let subscriberId = req.params.id;
+    Subscriber.findById(subscriberId)
+    .then(subscriber => {
+      res.locals.subscriber = subscriber;
+      next();
+    })
+    .catch(error => {
+      console.log(`Error fetching subscriber by ID: ${error.message}`);
+      next(error);
+    });
+  },
+
+  showView: (req, res) => {
+    res.render("subscribers/show");
+  },
 
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;

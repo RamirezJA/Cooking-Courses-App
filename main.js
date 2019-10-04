@@ -48,7 +48,7 @@ router.get("/users/:id", usersController.show, usersController.showView);
 
 
 router.get("/subscribers", subscribersController.index, subscribersController.indexView);
-router.get("subscribers/new", subscribersController.new);
+router.get("/subscribers/new", subscribersController.new);
 router.post(
   "/subscribers/create",
   subscribersController.create,

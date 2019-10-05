@@ -1,26 +1,32 @@
 <h2>User Table</h2>
 <table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Emai</th>
-            <th>Zip Code</th>
-            <th>Length</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% users.forEach(user => { %>
-        <tr>
-            <td>
-                <a href="<%= `/users/${user.id}` %>">
-                    <%= user.fullName %>
-                </a>
-            </td>
-            
-            <td><%= user.email %></td>
-            <td><%= user.zipCode %></td>
-            <td><%= user.length %></td>
-        </tr>
-        <% }); %>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Emai</th>
+      <th>Zip Code</th>
+      <th>Edit</th>
+      <th>Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+    <tr>
+      <td>
+        <a href="<%= `/users/${user.id}` %>">
+          <%= user.fullName %>
+        </a>
+      </td>
+
+      <td><%= user.email %></td>
+      <td><%= user.zipCode %></td>
+      <td>
+        <a href="<%= `/users/${user._id}/edit %>">
+          Edit
+        </a>
+      </td>
+      <td><%= user.length %></td>
+    </tr>
+    <% }); %>
+  </tbody>
 </table>

@@ -10,6 +10,7 @@ const express = require("express"),
   subscribersController = require("./controllers/subscribersController"),
   usersController = require("./controllers/usersController"),
   coursesController = require("./controllers/coursesController"),
+  methodOverride = require("method-override"),
   Subscriber = require("./models/subscriber");
 mongoose.Promise = global.Promise;
 
@@ -35,8 +36,14 @@ router.use(
     extended: false
   })
 );
+
+router.use(methodOverride("_method", {
+  methods:["POST", "GET"]
+}));
+
 router.use(express.json());
 router.use(homeController.logRequestPaths);
+
 
 router.get("/", homeController.index);
 router.get("/contact", homeController.getSubscriptionPage);

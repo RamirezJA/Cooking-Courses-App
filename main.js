@@ -5,13 +5,14 @@ const express = require("express"),
   router = express.Router(),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
+  methodOverride = require("method-override"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   subscribersController = require("./controllers/subscribersController"),
   usersController = require("./controllers/usersController"),
   coursesController = require("./controllers/coursesController"),
-  methodOverride = require("method-override"),
   Subscriber = require("./models/subscriber");
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
@@ -37,7 +38,8 @@ router.use(
   })
 );
 
-router.use(methodOverride("_method", {
+router.use(
+  methodOverride("_method", {
   methods:["POST", "GET"]
 }));
 
@@ -51,6 +53,8 @@ router.get("/contact", homeController.getSubscriptionPage);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
 router.post("/users/create", usersController.create, usersController.redirectView);
+router.get("/users/:id/edit", usersController.edit);
+router.put("/users/:id/update", usersController.update, usersController.redirectView);
 router.get("/users/:id", usersController.show, usersController.showView);
 
 

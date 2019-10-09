@@ -65,6 +65,17 @@ router.post(
   subscribersController.create,
   subscribersController.redirectView
 );
+router.get("/subscribers/:id/edit", subscribersController.edit);
+router.put(
+  "/subscribers/:id/update",
+  subscribersController.update,
+  subscribersController.redirectView
+);
+router.delete(
+  "/subscribers/:id/delete",
+  subscribersController.delete,
+  subscribersController.redirectView
+);
 router.get("/subscribers/:id", subscribersController.show, subscribersController.showView);
 
 router.get("/courses", coursesController.index, coursesController.indexView);

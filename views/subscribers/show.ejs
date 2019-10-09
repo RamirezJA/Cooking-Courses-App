@@ -22,7 +22,12 @@
     </td>
   </tr>
 </table>
-
+<% if (subscriber.userAccount) { %>
+  <h4 class="center"> This subscriber has a
+    <a href="<%=`/users/${subscriber.userAccount}` %>">
+      User account</a>.
+  </h4>
+  <% } %>
 
 <div>
   <a class="button" href="/subscribers">View all subscribers</a>

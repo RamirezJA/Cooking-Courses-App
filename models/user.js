@@ -28,7 +28,11 @@ const mongoose = require("mongoose"),
             type: String,
             required: true
         },
-        courses: [{type: Schema.Types.ObjectId, ref:"Course"}],
+        courses: [
+            {   type: Schema.Types.ObjectId, 
+                ref:"Course"
+            }
+        ],
         subscribedAccount: {
             type: Schema.Types.ObjectId, 
             ref: "Subscriber"

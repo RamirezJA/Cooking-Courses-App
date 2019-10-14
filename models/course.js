@@ -17,7 +17,7 @@ const mongoose = require("mongoose"),
         default: 0,
         min: [0, "Courses cannot have a negative number of students"]
     } ,
-    Cost: {
+    cost: {
         type: Number,
         default: 0,
         min: [0, "Course cannot have a negative cost"]

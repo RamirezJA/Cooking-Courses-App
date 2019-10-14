@@ -22,6 +22,10 @@
     </td>
   </tr>
 </table>
+<p>This subscriber has
+  <%= subscriber.courses.length %> associated course(s)
+</p>
+
 <% if (subscriber.userAccount) { %>
   <h4 class="center"> This subscriber has a
     <a href="<%=`/users/${subscriber.userAccount}` %>">

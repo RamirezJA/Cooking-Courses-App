@@ -10,7 +10,7 @@ exports.logErrors = (error, req, res, next) => {
 exports.respondNoResourceFound = (req, res) => {
   let errorCode = httpStatus.NOT_FOUND;
   res.status(errorCode);
-  res.send(`${errorCode} | The page does not exist!`);
+  res.render("error");
 };
 
 exports.respondInternalError = (error, req, res, next) => {
@@ -19,3 +19,5 @@ exports.respondInternalError = (error, req, res, next) => {
   res.status(errorCode);
   res.send(`${errorCode} | Sorry, our application is experiencing a problem!`);
 };
+
+

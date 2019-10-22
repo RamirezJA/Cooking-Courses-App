@@ -37,10 +37,10 @@ module.exports = {
         next();
       })
       .catch(error => {
-        console.log(`Error saving subscriber: ${error.message}`);
         res.locals.redirect = "/users/new";
+        console.log(`Error saving subscriber: ${error.message}`);
         req.flash("error", `Failed to create subscriber account because: ${error.message}.`);
-        next(error);
+        next();
       });
   },
 

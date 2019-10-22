@@ -37,7 +37,7 @@ module.exports = {
         next();
       })
       .catch(error => {
-        res.locals.redirect = "/users/new";
+        res.locals.redirect = "/subscribers/new";
         console.log(`Error saving subscriber: ${error.message}`);
         req.flash("error", `Failed to create subscriber account because: ${error.message}.`);
         next();
@@ -88,6 +88,7 @@ module.exports = {
     })
       .then(subscriber => {
         res.locals.redirect = `/subscribers/${subscriberId}`;
+        req.flash("success", `${subscriber.fullName}'s account updated successfully!`);
         res.locals.subscriber = subscriber;
         next();
       })
@@ -102,6 +103,7 @@ module.exports = {
     Subscriber.findByIdAndRemove(subscriberId)
       .then(() => {
         res.locals.redirect = "/subscribers";
+        req.flash("success", `${subscriber.fullName}'s account deleted successfully!`);
         next();
       })
       .catch(error => {

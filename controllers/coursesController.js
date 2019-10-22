@@ -31,12 +31,14 @@ module.exports = {
     Course.create(courseParams)
       .then(course => {
         res.locals.redirect = "/courses";
+        req.flash("success", `${course.title} created successfully!`);
         res.locals.course = course;
         next();
       })
       .catch(error => {
         console.log(`Error saving course: ${error.message}`);
-        next(error);
+        req.flash("error", `Failed to create course: ${error.message}.`);
+        next();
       });
   },
 
@@ -85,12 +87,14 @@ module.exports = {
     })
       .then(course => {
         res.locals.redirect = `/courses/${courseId}`;
+        req.flash("success", `${course.title} updated successfully!`);
         res.locals.course = course;
         next();
       })
       .catch(error => {
         console.log(`Error updating course by ID: ${error.message}`);
-        next(error);
+        req.flash("error", `Failed to update course: ${error.message}.`);
+        next();
       });
   },
 
@@ -99,10 +103,12 @@ module.exports = {
     Course.findByIdAndRemove(courseId)
       .then(() => {
         res.locals.redirect = "/courses";
+        req.flash("success", `${course.title} deleted successfully!`);
         next();
       })
       .catch(error => {
         console.log(`Error deleting course by ID: ${error.message}`);
+        req.flash("error", `Failed to delete course: ${error.message}.`);
         next();
       });
   },

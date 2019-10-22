@@ -19,21 +19,6 @@ module.exports = {
     res.render("subscribers/index");
   },
 
-  saveSubscriber: (req, res) => {
-    let newSubscriber = new Subscriber({
-      name: req.body.name,
-      email: req.body.email,
-      zipCode: req.body.zipCode
-    });
-    newSubscriber
-      .save()
-      .then(result => {
-        res.render("thanks");
-      })
-      .catch(error => {
-        if (error) res.send(error);
-      });
-  },
   new: (req, res) => {
     res.render("subscribers/new");
   },
@@ -47,11 +32,14 @@ module.exports = {
     Subscriber.create(subscriberParams)
       .then(subscriber => {
         res.locals.redirect = "/subscribers";
+        req.flash("success", `${subscriber.fullName}'s account created successfully!`);
         res.locals.subscriber = subscriber;
         next();
       })
       .catch(error => {
         console.log(`Error saving subscriber: ${error.message}`);
+        res.locals.redirect = "/users/new";
+        req.flash("error", `Failed to create subscriber account because: ${error.message}.`);
         next(error);
       });
   },

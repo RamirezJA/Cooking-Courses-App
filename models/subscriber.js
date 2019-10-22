@@ -20,6 +20,10 @@ const subscriberSchema = new mongoose.Schema({
   courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }]
 });
 
+subscriberSchema.virtual("fullName").get(function() {
+  return `${this.name}`;
+});
+
 subscriberSchema.methods.getInfo = function() {
   return `Name: ${this.name} Email: ${this.email} Zip Code: ${this.zipCode}`;
 };

@@ -9,7 +9,7 @@ const express = require("express"),
   expressSession = require("express-session"),
   cookieParser = require("cookie-parser"),
   connectFlash = require("connect-flash"),
-  expressValidator = require("express-validator"),
+	expressValidator = require("express-validator"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   subscribersController = require("./controllers/subscribersController"),
@@ -66,9 +66,7 @@ router.use((req, res, next) => {
   res.locals.flashMessages = req.flash();
   next();
 });
-
 router.use(expressValidator());
-
 router.use(homeController.logRequestPaths);
 
 router.get("/", homeController.index);
@@ -76,10 +74,9 @@ router.get("/contact", homeController.getSubscriptionPage);
 
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
-router.post("/users/create", usersController.validate, usersController.create, usersController.redirectView);
+router.post("/users/create", usersController.validate, usersController.create, usersController.redirectView);router.get("/users/login", usersController.login);
 router.get("/users/login", usersController.login);
 router.post("/users/login", usersController.authenticate, usersController.redirectView);
-
 router.get("/users/:id/edit", usersController.edit);
 router.put("/users/:id/update", usersController.update, usersController.redirectView);
 router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
@@ -112,8 +109,8 @@ router.get("/courses/:id/edit", coursesController.edit);
 router.put("/courses/:id/update", coursesController.update, coursesController.redirectView);
 router.delete("/courses/:id/delete", coursesController.delete, coursesController.redirectView);
 router.get("/courses/:id", coursesController.show, coursesController.showView);
-router.post("/subscribe", subscribersController.saveSubscriber);
 
+router.post("/subscribe", subscribersController.saveSubscriber);
 
 router.use(errorController.logErrors);
 router.use(errorController.respondNoResourceFound);

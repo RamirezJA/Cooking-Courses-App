@@ -21,8 +21,8 @@ const express = require("express"),
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  "mongodb://localhost:27017/recipe_db",
-  { useNewUrlParser: true }
+  process.env.MONGODB_URI || "mongodb://localhost:27017/recipe_db",
+  { useNewUrlParser: true, useFindAndModify: false }
 );
 mongoose.set("useCreateIndex", true);
 
@@ -33,6 +33,7 @@ db.once("open", () => {
 });
 
 app.set("port", process.env.PORT || 3000);
+
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
@@ -79,6 +80,6 @@ app.use(expressValidator());
 
 app.use("/", router);
 
-app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });
